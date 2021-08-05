@@ -1,0 +1,40 @@
+import { useEffect, useState } from "react";
+import Item from "./Item";
+
+export default function ItemList(){
+    const [products, setProducts] = useState([]);
+
+    useEffect(()=>{
+        new Promise((resolve, reject) =>{
+            const data =[
+                {
+                    id: 1,
+                    title: "Producto 1",
+                    description: "Prueba de Producto 1",
+                    price: 200,
+                    imgUrl: "producto1"
+                },
+                {
+                    id: 2,
+                    title: "Producto 2",
+                    description: "Prueba de Producto 1",
+                    price: 200,
+                    imgUrl: "producto1"
+                }
+            ];
+            setTimeout(() => resolve(data),2000);
+        }).then((response) => {
+            setProducts(response);
+            console.log("response", response);
+        }).catch((error) =>{
+            alert("Hubo un error");
+        });
+    }, []);
+
+    return(
+        <>
+       {products.map((product)=>(<Item title={product.title} description={product.description}/>))}
+        </>
+        
+    )
+}
