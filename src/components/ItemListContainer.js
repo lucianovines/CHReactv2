@@ -8,9 +8,10 @@ export function ItemListContainer (){
         <div>
             <h1>Acá va a ir nuestra pagina.</h1>
         </div>
-        <ItemCount initial={3} stock={5}/>
         <h1>ItemList:</h1>
-        <ItemList />
+        <div class="row row-cols-2 row-cols-md-6 g-4">
+            <ItemList />
+        </div>
         </>
     )
 }

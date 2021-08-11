@@ -11,14 +11,14 @@ export default function ItemList(){
                     id: 1,
                     title: "Producto 1",
                     description: "Prueba de Producto 1",
-                    price: 200,
+                    price: 200.00,
                     imgUrl: "producto1"
                 },
                 {
                     id: 2,
                     title: "Producto 2",
-                    description: "Prueba de Producto 1",
-                    price: 200,
+                    description: "Esta es la descripcion del producto numero 2",
+                    price: 150.99,
                     imgUrl: "producto1"
                 }
             ];
@@ -33,7 +33,7 @@ export default function ItemList(){
 
     return(
         <>
-       {products.map((product)=>(<Item title={product.title} description={product.description}/>))}
+       {products.map((product)=>(<Item title={product.title} description={product.description} price={product.price} imgUrl={product.imgUrl}/>))}
         </>
         
     )
