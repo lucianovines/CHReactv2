@@ -1,7 +1,7 @@
 import ItemCount from "./ItemCount";
 import ItemList from "./ItemList";
 
-export function ItemListContainer (){
+export default function ItemListContainer (){
 
     return(
         <>
