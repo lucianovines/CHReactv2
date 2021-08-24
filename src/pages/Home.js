@@ -1,11 +1,10 @@
 
-import ItemListContainer from "../components/ItemListContainer"
 
 
 export default function home(){
     return(
         <>
-            <ItemListContainer/>
+            <h1>Esta es la pagina de Inicio</h1>
         </>
     )
 }

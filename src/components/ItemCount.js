@@ -26,9 +26,9 @@ export default function ItemCount(props){
     return(
         <>
         <div className="productStock col-12">
-            <button className="col-4" onClick ={sumar}>+</button>
-            <button className="col-4">{OnAdd}</button>
             <button className="col-4"  onClick ={restar}>-</button>
+            <button className="col-4">{OnAdd}</button>
+            <button className="col-4" onClick ={sumar}>+</button>
         </div>
         </>
     )

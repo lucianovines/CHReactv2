@@ -1,28 +1,14 @@
 import { useEffect, useState } from "react";
 import Item from "./Item";
+import {ProductsJSON} from "../jsons/ProductsJson"
 
 export default function ItemList(){
     const [products, setProducts] = useState([]);
 
     useEffect(()=>{
         new Promise((resolve, reject) =>{
-            const data =[
-                {
-                    id: 1,
-                    title: "Producto 1",
-                    description: "Prueba de Producto 1",
-                    price: 200.00,
-                    imgUrl: "producto1"
-                },
-                {
-                    id: 2,
-                    title: "Producto 2",
-                    description: "Esta es la descripcion del producto numero 2",
-                    price: 150.99,
-                    imgUrl: "producto1"
-                }
-            ];
-            setTimeout(() => resolve(data),2000);
+            
+            setTimeout(() => resolve(ProductsJSON),2000);
         }).then((response) => {
             setProducts(response);
             console.log("response", response);
@@ -33,8 +19,8 @@ export default function ItemList(){
 
     return(
         <>
-       {products.map((product)=>(<Item title={product.title} description={product.description} price={product.price} imgUrl={product.imgUrl}/>))}
-        </>
+       {products.map((product)=>(<Item {...product} />))} 
+       </>
         
     )
 }

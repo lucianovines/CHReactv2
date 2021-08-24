@@ -6,6 +6,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //pages
 import Home from './pages/Home';
 import ItemDetailView from './pages/ItemDetailView';
+import ProductsList from './pages/ProductsList';
+
 
 
 function App() {
@@ -15,11 +17,11 @@ function App() {
       <Switch>
 
         <Route exact path="/">
-           <Home/>
+           <ProductsList/>
         </Route>
 
         <Route exact path="/category/:id">
-           <Home/>
+           <ProductsList/>
         </Route>
 
         <Route exact path="/item/:id">

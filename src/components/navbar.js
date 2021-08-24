@@ -1,4 +1,5 @@
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,9 +23,9 @@ export default function NavBar() {
       Proyecto Viñes
       </Navbar.Brand>
     <Nav className="me-auto">
-      <Nav.Link href="#home">Inicio</Nav.Link>
-      <Nav.Link href="#features">Productos</Nav.Link>
-      <Nav.Link href="#pricing">Nosotros</Nav.Link>
+      <Link to="/">Inicio</Link>
+      <Link to="/"> Productos</Link>
+      <Link to="/">Categorias</Link>
     </Nav>
     <CartWidget />
     </Container>

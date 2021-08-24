@@ -1,42 +1,17 @@
-import { useEffect, useState } from "react";
-import Item from "./Item";
+import { Link } from "react-router-dom";
 
-export default function ItemDetail(){
-    const [products, setProducts] = useState([]);
-
-    useEffect(()=>{
-        new Promise((resolve, reject) =>{
-            const data =[
-                {
-                    id: 1,
-                    title: "Producto 1",
-                    description: "Prueba de Producto 1",
-                    price: 200.00,
-                    imgUrl: "producto1",
-                    detail: "Este es el detalle del Producto 1"
-                },
-                {
-                    id: 2,
-                    title: "Producto 2",
-                    description: "Esta es la descripcion del producto numero 2",
-                    price: 150.99,
-                    imgUrl: "producto1",
-                    detail: "Este es el detalle del Producto 1"
-                }
-            ];
-            setTimeout(() => resolve(data),2000);
-        }).then((response) => {
-            setProducts(response);
-            console.log("response", response);
-        }).catch((error) =>{
-            alert("Hubo un error");
-        });
-    }, []);
+export default function ItemDetail(props){
+    console.log("Estoy aca");
 
     return(
-        <>
-       {products.map((product)=>(<Item title={product.title} description={product.description} price={product.price} imgUrl={product.imgUrl} detail={product.detail} />))}
-        </>
+        <div>
+            <h1>Detalle del Item</h1>
+            <h2>{props.title}</h2>
+            <h3>{props.description}</h3>
+            <h3>${props.price}</h3>
+            <img src={`../assets/img/products/${props.imgUrl}`} />
+            <Link to="/">Volver</Link>
+        </div>
         
     )
 }
