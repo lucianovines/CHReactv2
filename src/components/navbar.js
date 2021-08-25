@@ -7,6 +7,7 @@ import logo from '../assets/img/logo.png'
 import CartWidget from './CartWidget'
 
 
+
 export default function NavBar() {
   return (
     <>
@@ -23,9 +24,9 @@ export default function NavBar() {
       Proyecto Viñes
       </Navbar.Brand>
     <Nav className="me-auto">
-      <Link to="/">Inicio</Link>
-      <Link to="/"> Productos</Link>
-      <Link to="/">Categorias</Link>
+    <Link className="navBarV" to="/">Inicio</Link>
+    <Link className="navBarV" to="/"> Productos</Link>
+    <Link className="navBarV" to="/category/">Categorias</Link>
     </Nav>
     <CartWidget />
     </Container>

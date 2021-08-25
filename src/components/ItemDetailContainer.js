@@ -11,7 +11,7 @@ export default function ItemDetailContainer(){
 
     useEffect(()=>{
         new Promise((resolve, reject) =>{
-            setTimeout(() => resolve(ProductsJSON.filter((item)=> item.id === id)),2000);
+            resolve(ProductsJSON.filter((item)=> item.id === id));
         }).then((response) => {
             setProducts(response[0]);
             console.log("response IDC", response);

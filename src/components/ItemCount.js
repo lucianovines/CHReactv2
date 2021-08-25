@@ -22,13 +22,17 @@ export default function ItemCount(props){
             setOnAdd(newValue);
         }
       }
-
+      console.log("Btn Stock", props.stock)
+      console.log("Btn invitial", OnAdd)
     return(
         <>
-        <div className="productStock col-12">
+        <div className="productStock col-4">
             <button className="col-4"  onClick ={restar}>-</button>
             <button className="col-4">{OnAdd}</button>
             <button className="col-4" onClick ={sumar}>+</button>
+        </div>
+        <div className="">
+            {OnAdd > 0 && <button>Finalizar Compra</button>}
         </div>
         </>
     )
