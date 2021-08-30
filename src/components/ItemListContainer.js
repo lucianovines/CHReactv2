@@ -1,17 +1,17 @@
-import ItemCount from "./ItemCount";
+import { Container, Row, Col } from "react-bootstrap";
 import ItemList from "./ItemList";
 
 export default function ItemListContainer (){
 
     return(
         <>
-        <div>
-            <h1>Acá va a ir nuestra pagina.</h1>
-        </div>
-        <h1>ItemList:</h1>
-        <div class="row row-cols-2 row-cols-md-6 g-4">
-            <ItemList />
-        </div>
+        <Container fluid >
+            <Col lg="8" className="contenedor">   
+            <Row xs={2} md={4} lg={7}>           
+                    <ItemList />    
+            </Row>
+            </Col> 
+        </Container>
         </>
     )
 }

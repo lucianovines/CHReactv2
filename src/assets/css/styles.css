@@ -17,7 +17,47 @@
 }
 
 .navBarV{
-    color: white;
+    color: white !important;
     text-decoration: none;
     padding-left: 2em;
+    align-items: center;
+    
+}
+#navbarScrollingDropdown{
+    color: white !important;
+    padding: 0 !important;
+}
+
+.card{
+    margin: 10px;
+}
+
+
+.contenedor{
+    margin: auto !important;
+}
+
+.pPrincipal{
+    background-image: url(../img/background.png);
+    height: 70vh;
+    width: 100%;
+    color: white; 
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.pPrincipal:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+.pPrincipal h1{
+   font-size: 5em;
+   position: relative;
+   
 }

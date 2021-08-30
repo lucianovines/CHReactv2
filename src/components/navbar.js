@@ -1,14 +1,18 @@
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from "react-bootstrap/NavDropdown"
 import { Link } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../assets/img/logo.png'
 import CartWidget from './CartWidget'
-
-
+import { CategoriesJSON } from '../jsons/CategoriesJson';
 
 export default function NavBar() {
+
+
+
+
   return (
     <>
     <Navbar bg="dark" variant="dark">
@@ -24,9 +28,17 @@ export default function NavBar() {
       Proyecto Viñes
       </Navbar.Brand>
     <Nav className="me-auto">
-    <Link className="navBarV" to="/">Inicio</Link>
-    <Link className="navBarV" to="/"> Productos</Link>
-    <Link className="navBarV" to="/category/">Categorias</Link>
+    <Link className="navBarV d-flex" to="/">Inicio</Link>
+    <Link className="navBarV d-flex" to="/"> Productos</Link>
+    
+      <NavDropdown className="navBarV" title="Categorias" id="navbarScrollingDropdown">
+        {CategoriesJSON.map((category)=>(
+          <Link className="navBarV" to={`/category/:${category.id}`}> 
+            <NavDropdown.Item  href={`#action${category.id}`}> {category.description} </NavDropdown.Item>
+          </Link>
+        ))}
+      </NavDropdown>
+
     </Nav>
     <CartWidget />
     </Container>

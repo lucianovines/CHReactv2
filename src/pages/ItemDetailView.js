@@ -4,7 +4,10 @@ import ItemDetailContainer from "../components/ItemDetailContainer"
 export default function home(){
     return(
         <>
-            <ItemDetailContainer/>
+
+            <div class="col-10">
+                <ItemDetailContainer/>
+            </div>
         </>
     )
 }

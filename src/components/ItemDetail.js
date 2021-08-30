@@ -8,11 +8,11 @@ export default function ItemDetail(props){
         <div>
             <h1>Detalle del Item</h1>
             <h2>{props.title}</h2>
+            <img src={props.imgUrl} />
             <h3>{props.description}</h3>
             <h3>${props.price}</h3>
-            <img src={`../assets/img/products/${props.imgUrl}`} />
             <div>
-                <ItemCount initial={0} stock={props.stock}/>
+                <ItemCount {...props}/>
             </div>
             <Link to="/">Volver</Link>
         </div>
