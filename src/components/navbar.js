@@ -7,10 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../assets/img/logo.png'
 import CartWidget from './CartWidget'
 import { CategoriesJSON } from '../jsons/CategoriesJson';
+import cartContext from '../context/cartContext';
+import { useContext } from 'react';
 
 export default function NavBar() {
 
-
+  const cartInContext = useContext(cartContext);
 
 
   return (
@@ -41,6 +43,7 @@ export default function NavBar() {
 
     </Nav>
     <CartWidget />
+    <p className="cartSize">{cartInContext.cartSize} </p>
     </Container>
   </Navbar>
   </>

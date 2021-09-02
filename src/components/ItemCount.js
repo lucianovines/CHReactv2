@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import cartContext from "../context/cartContext";
+
+
 export default function ItemCount(props){
     const [stock, setStock] = useState(props.stock);
     //const [initial, setInitial] = useState(props.initial);
     const [count, setCount] = useState(0);
     const [btnBuy, setBtnBuy] = useState(0);
+
+
+    const cartInContext = useContext(cartContext);
     
 
     useEffect(() =>{
@@ -12,11 +18,10 @@ export default function ItemCount(props){
     }, []);
 
     const onAdd = (producto, toAdd) =>{
-        console.log("Producto agregado: ", producto);
-        console.log("Cantidad agregada: ", toAdd);
         if (toAdd>0 ){
             setBtnBuy(1);
         }
+        cartInContext.addItem(producto, toAdd);
     }
 
     const sumar = ()=>{
@@ -44,6 +49,10 @@ export default function ItemCount(props){
         <div className="">
             {count > 0 && <button onClick={() => onAdd(props, count)}>Agregar</button>}
             {btnBuy > 0 && <Link to="/cart">Finalizar Compra</Link>}
+
+            <button onClick={() => cartInContext.clear()}>Limpiar</button>
+            <button onClick={() => cartInContext.removeItem(props.id)}>Borrar Item</button>
+           
         </div>
         </>
     )
