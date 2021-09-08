@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import cartContext from "../context/cartContext";
+import { Link } from "react-router-dom";
 
 export default function Cart(){
     const cartInContext = useContext(cartContext);
@@ -86,6 +87,13 @@ export default function Cart(){
 </div>
 
 }
+
+    {products.length ===0 &&
+    <>
+    <h1>No hay items en el carrito</h1>
+    <Link to="/">Volver a comprar</Link>
+    </>
+    }
 </>
     )
 
