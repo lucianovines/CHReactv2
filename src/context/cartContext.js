@@ -8,9 +8,9 @@ export const CartProvider = ({ item = [],quantity, children}) =>{
     const [isIn, setIsIn] = useState(false);
     const cartDraft = cart;
 
-    function addItem(item, quantity){
-        isInCart(item.id)
-        if (isIn==true){
+    async function addItem(item, quantity){
+        const i = await isInCart(item.id);
+        if (isIn===true){
             alert("no se puede agregar")
         }else{
              const productAdded = {
@@ -47,20 +47,19 @@ export const CartProvider = ({ item = [],quantity, children}) =>{
         setTotal(0);
     };
 
-    function isInCart(itemId){
-      
+    async function isInCart(itemId){
        cart.map((product)=>{
-        if(itemId == product.product.id){
-            return true;   
+        if(itemId === product.product.id){
+            setIsIn(true);
         }else{
-            return false;
+            setIsIn(false);
             }
-       })
+       });
     };
 
 
     return <cartContext.Provider 
-            value={{addItem, removeItem, clear, isInCart, cartSize: total}} >
+            value={{addItem, removeItem, clear, isInCart, cartSize: total, cart}} >
                 {children}
     </cartContext.Provider>
 };

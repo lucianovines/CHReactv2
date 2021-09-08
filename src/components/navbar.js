@@ -43,7 +43,7 @@ export default function NavBar() {
 
     </Nav>
     <CartWidget />
-    <p className="cartSize">{cartInContext.cartSize} </p>
+    <Link className="cartSize" to="/cart">{cartInContext.cartSize}</Link>
     </Container>
   </Navbar>
   </>

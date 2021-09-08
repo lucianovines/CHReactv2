@@ -3,6 +3,12 @@ import './assets/css/styles.css'
 import NavBar from './components/navbar.js';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {CartProvider} from "./context/cartContext"
+import Cart from './components/cart';
+
+
+//Firebase
+import { collection, getDocs } from '@firebase/firestore';
+import { getData } from './firebase';
 
 //pages
 import ProductsList from './pages/ProductsList';
@@ -28,6 +34,10 @@ function App() {
 
           <Route exact path="/item/:id">
              <ItemDetailContainer/>
+          </Route>
+
+          <Route exact path="/cart">
+             <Cart/>
           </Route>
 
         </Switch>
