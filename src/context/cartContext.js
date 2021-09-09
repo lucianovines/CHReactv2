@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const cartContext = createContext([]);
 
-export const CartProvider = ({ item = [],quantity, children}) =>{
+export const CartProvider = ({ item = [], children}) =>{
     const [ cart, setCart ] = useState(item);
     const [total, setTotal] = useState(0);
     const [isIn, setIsIn] = useState(false);
@@ -33,13 +33,11 @@ export const CartProvider = ({ item = [],quantity, children}) =>{
     }
 
     function removeItem(itemId){
-        let i = cart.indexOf(itemId)
-        console.log("itemId", itemId)
-        console.log("i", i)
-        if ( i !==-1) {
-            cart.slice(i, 1);
-            console.log("cart en remove", cart);
-        }
+        const auxCart = [...cart];
+        const cleanCart= auxCart.filter(item => item.product.id !== itemId)
+        setCart(cleanCart);
+        getTotalQuantity()
+        console.log("Remove Item", item)
     };
 
     function clear(){

@@ -4,7 +4,7 @@ import cartContext from "../context/cartContext";
 
 
 export default function ItemCount(props){
-    const [stock, setStock] = useState(props.stock);
+    const [stock, setStock] = useState(props.Stock);
     //const [initial, setInitial] = useState(props.initial);
     const [count, setCount] = useState(0);
     const [btnBuy, setBtnBuy] = useState(0);

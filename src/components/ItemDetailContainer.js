@@ -1,17 +1,20 @@
 import ItemDetail from "./ItemDetail"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {ProductsJSON} from "../jsons/ProductsJson"
 import { useParams } from "react-router";
+import productsContext from "../context/productsContext";
+
 
 export default function ItemDetailContainer(){
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const productsInContext = useContext(productsContext);
 
     const {id} = useParams();
 
     useEffect(()=>{
         new Promise((resolve, reject) =>{
-            resolve(ProductsJSON.filter((item)=> item.id === id));
+            resolve(productsInContext.products.filter((item)=> item.id === id));
             setLoading(true);
         }).then((response) => {
             setProducts(response[0]);

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import cartContext from "../context/cartContext";
 import { Link } from "react-router-dom";
+import { FiTrash } from "react-icons/fi";
 
 export default function Cart(){
     const cartInContext = useContext(cartContext);
@@ -10,7 +11,7 @@ export default function Cart(){
     const getTotal = () =>{
         let i = 0;
         const cartTotal = products.map((product)=>
-        i += (product.product.price * product.quantity)
+        i += (product.product.Price * product.quantity)
         )
         setTotal(i)
         }
@@ -23,16 +24,6 @@ export default function Cart(){
     console.log("products", products);
     console.log("CIC", cartInContext.cart)
     console.log("Total", total)
-
-    function countStock(product){
-        for(let i=0; i<=product.stock; i++){
-        return(
-            <>
-            <option value={i}>{i}</option>
-            </>
-        )}
-    }
-
 
 
     return( 
@@ -58,7 +49,7 @@ export default function Cart(){
                         <div class="product-item">
                             <a class="product-thumb" href="#"><img src={product.product.imgUrl} alt="Product"></img></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">{product.product.title}</a></h4><span><em>Categoria:</em> {product.product.categoryid}</span><span><em>Descripción:</em> {product.product.description}</span>
+                                <h4 class="product-title"><a href="#">{product.product.Name}</a></h4><span><em>Categoria:</em> {product.product.Category}</span><span><em>Descripción:</em> {product.product.Description}</span>
                             </div>
                         </div>
                     </td>
@@ -67,9 +58,13 @@ export default function Cart(){
                             {product.quantity}
                         </p>
                     </td>
-                    <td class="text-center text-lg text-medium">${product.product.price}</td>
-                    <td class="text-center text-lg text-medium">${product.product.price * product.quantity}</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center text-lg text-medium">
+                        <button onClick={()=>console.log("sumar") }>+</button>
+                        ${product.product.Price}
+                        <button>-</button>
+                    </td>
+                    <td class="text-center text-lg text-medium">${(product.product.Price * product.quantity)}</td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><FiTrash onClick={()=> cartInContext.removeItem(product.product.id)}/></a></td>
                 </tr>
             )}
             </tbody>

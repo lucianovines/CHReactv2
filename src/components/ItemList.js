@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Item from "./Item";
-import {ProductsJSON} from "../jsons/ProductsJson"
+import productsContext from "../context/productsContext";
+
+
 
 export default function ItemList(){
     const [products, setProducts] = useState([]);
 
+    const productsInContext = useContext(productsContext);
+
+    console.log("products in context", productsInContext.products);
+    
     useEffect(()=>{
-        new Promise((resolve, reject) =>{
-            
-            setTimeout(() => resolve(ProductsJSON),2000);
-        }).then((response) => {
-            setProducts(response);
-            console.log("response", response);
-        }).catch((error) =>{
-            alert("Hubo un error");
-        });
+        
+        setProducts(productsInContext)
     }, []);
 
     return(
         <>
-       {products.map((product)=>(<Item {...product} />))} 
+       {productsInContext.products.map((product)=>(<Item {...product} />))} 
        </>
         
     )
