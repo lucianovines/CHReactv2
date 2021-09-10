@@ -10,7 +10,7 @@ export default function Cart(){
 
     const getTotal = () =>{
         let i = 0;
-        const cartTotal = products.map((product)=>
+        const cartTotal = cartInContext.cart.map((product)=>
         i += (product.product.Price * product.quantity)
         )
         setTotal(i)
