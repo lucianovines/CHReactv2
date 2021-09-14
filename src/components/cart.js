@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import cartContext from "../context/cartContext";
 import { Link } from "react-router-dom";
 import { FiTrash } from "react-icons/fi";
+import { db } from "../firebase";
+import { collection,doc, setDoc, Timestamp, addDoc } from "firebase/firestore";
 
 export default function Cart(){
     const cartInContext = useContext(cartContext);
-    const [products, setProducts] = useState(cartInContext.cart);
     const [total, setTotal] = useState(0);
+    const [showUserData, setShowUserData] = useState(false);
 
     const getTotal = () =>{
         let i = 0;
@@ -16,20 +18,51 @@ export default function Cart(){
         setTotal(i)
         }
 
+    const [userData, setUserData] = useState({
+        name: "",
+        phone: "",
+        email: ""
+    });
+
+
     useEffect(()=>{
         getTotal();
-    },[1])
-    
+    })
 
-    console.log("products", products);
-    console.log("CIC", cartInContext.cart)
-    console.log("Total", total)
+    const userDataIndicator = ()=> {
+    setShowUserData(true);
+    console.log("Fecha y hora", Timestamp.fromDate(new Date()))
+    }
+
+    const handleInputChange = (event)=>{
+        setUserData({
+            ...userData,
+            [event.target.name] : event.target.value
+        })
+        console.log("userData", userData);
+    }
+
+    const sendData = async (event)=>{
+        event.preventDefault();
+        console.log("datos enviados" , userData)
+        const orderCollection = collection(db, "Orders");
+        const order ={
+            buyer: userData,
+            items: cartInContext.cart,
+            date: Timestamp.fromDate(new Date()),
+            total: total
+        };
+
+        const orderReference = await addDoc(collection(db, "Orders"), order)
+        console.log("ID de Compra: ", orderReference.id);
+
+    }
 
 
     return( 
         
 <>
-        {products.length >0 && 
+        {cartInContext.cart.length >0 && 
 <div class="container padding-bottom-3x mb-1">
     <div class="table-responsive shopping-cart">
         <table class="table">
@@ -43,7 +76,7 @@ export default function Cart(){
                 </tr>
             </thead>
             <tbody>
-            {products.map((product) =>
+            {cartInContext.cart.map((product) =>
                 <tr>
                     <td>
                         <div class="product-item">
@@ -76,14 +109,32 @@ export default function Cart(){
     <div class="shopping-cart-footer">
         <div class="column"><a class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Seguir Comprando</a></div>
         <div class="column">
-            <a class="btn btn-success" href="#">Finalizar Compra</a>
+            <a class="btn btn-success" onClick={()=>userDataIndicator()}>Finalizar Compra</a>
         </div>
     </div>
+    {showUserData===true && 
+    <div className="userData">
+        <h1>Formulario</h1>
+            <form className="row" onSubmit={sendData} >
+                <div className="col-md-3">
+                    <input type="text" placeholder="Nombre" className="form-control" onChange={handleInputChange} name="name"></input>
+                </div>
+                <div className="col-md-3">
+                    <input type="text" placeholder="Telefono" className="form-control" onChange={handleInputChange} name="phone"></input>
+                </div>
+                <div className="col-md-3">
+                    <input type="text" placeholder="Email" className="form-control" onChange={handleInputChange} name="email"></input>
+                </div>
+                <button type="submit" className="btn btn-primary">Enviar</button>
+            </form>
+    </div>
+    }            
+    
 </div>
 
 }
 
-    {products.length ===0 &&
+    {cartInContext.cart.length ===0 &&
     <>
     <h1>No hay items en el carrito</h1>
     <Link to="/">Volver a comprar</Link>

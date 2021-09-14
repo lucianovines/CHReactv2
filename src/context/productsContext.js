@@ -7,10 +7,10 @@ const productsContext = createContext({});
 
 export const ProductsProvider = ({children}) => {
 const [products, setProducts] = useState([]);
+const [categories, setCategories] =useState([]);
 
 useEffect(() => {
   // useEffect no puede asincronico
-
   // 2 PIDO LOS DATOS (truco: usar async/await)
   const getProducts = async () => {
     // 3 obtener colleccion
@@ -27,14 +27,27 @@ useEffect(() => {
     console.log(productsList);
     setProducts(productsList);
   };
+
+  const getCategories = async () =>{
+    const categoriesCollection = collection(db, 'Categories');
+    const categoriesSnapShot = await getDocs(categoriesCollection);
+    const categoriesList = categoriesSnapShot.docs.map(doc =>({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    console.log("Categorias List", categoriesList);
+    setCategories(categoriesList);
+  }
   // segunda parte del truco ejecutar la funcion asincronica
   getProducts();
+  getCategories();
 
   // array vacio, se ejecuta cuando se monta <app />
 }, []);
 
 return(
-    <productsContext.Provider value={{products, setProducts}}>
+    <productsContext.Provider value={{products, setProducts, categories}}>
         {children}
     </productsContext.Provider>
 )

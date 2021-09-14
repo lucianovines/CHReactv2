@@ -8,11 +8,13 @@ import logo from '../assets/img/logo.png'
 import CartWidget from './CartWidget'
 import { CategoriesJSON } from '../jsons/CategoriesJson';
 import cartContext from '../context/cartContext';
+import productsContext from '../context/productsContext';
 import { useContext } from 'react';
 
 export default function NavBar() {
 
   const cartInContext = useContext(cartContext);
+  const productsInContext = useContext(productsContext);
 
 
   return (
@@ -34,16 +36,15 @@ export default function NavBar() {
     <Link className="navBarV d-flex" to="/"> Productos</Link>
     
       <NavDropdown className="navBarV" title="Categorias" id="navbarScrollingDropdown">
-        {CategoriesJSON.map((category)=>(
-          <Link className="navBarV" to={`/category/:${category.id}`}> 
-            <NavDropdown.Item  href={`#action${category.id}`}> {category.description} </NavDropdown.Item>
-          </Link>
+        {productsInContext.categories.map((category)=>(
+            <NavDropdown.Item  > 
+              <Link className="navBarV navBarDropDown" to={`/category/${category.Description}`}>{category.Name} </Link>
+            </NavDropdown.Item>
         ))}
       </NavDropdown>
 
     </Nav>
-    <CartWidget />
-    <Link className="cartSize" to="/cart">{cartInContext.cartSize}</Link>
+    <Link className="cartSize" to="/cart"><CartWidget />{cartInContext.cartSize}</Link>
     </Container>
   </Navbar>
   </>

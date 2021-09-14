@@ -23,11 +23,11 @@ function App() {
           <Switch>
 
             <Route exact path="/">
-               <ProductsList/>
+                <ProductsList/>
             </Route>
 
             <Route exact path="/category/:id">
-                  <ItemListContainer/>        
+                <ItemListContainer/>        
             </Route>
 
             <Route exact path="/item/:id">

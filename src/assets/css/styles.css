@@ -23,6 +23,10 @@
     align-items: center;
     
 }
+
+.navBarDropDown{
+    color: black !important;
+}
 #navbarScrollingDropdown{
     color: white !important;
     padding: 0 !important;
