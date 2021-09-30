@@ -1,31 +1,34 @@
 import { Link } from "react-router-dom"
-import { Col } from "react-bootstrap"
-
-
-
+import cartContext from "../context/cartContext"
+import { useContext } from "react"
 
 export default function Item(props){
 
+    const cartInContext = useContext(cartContext);    
+
     return(
-        <Col>
-            <div className="card border-dark">
-                <img src={props.imgUrl} className="card-img-top" alt="imgprod"/>
-                <div className="card-body">
-                    <h5 className="card-title">{props.Name}</h5>
-                    <p className="card-text">{props.Description}.</p>
-                    <p className="card-text-price">${props.Price}</p>
-                    <div className="row itemButtons">
-                        <div className="col-6 buttonDetail">
-                            <button>Hola</button>
-                        </div>
-                        <div className="col-6 buttonAdd">
-                            <button>Hola</button>
-                        </div>
+       
+ 
+
+            <div class="col-md-4 d-flex justify-content-center">
+            <div class="card p-2">
+                <div class="text-center"> 
+                    <img src={props.imgUrl} class="img-fluid" width="350" /> 
+                </div>
+                <div class="content">
+                    <div class="d-flex justify-content-between align-items-center"> 
+                        <span class="category">{props.Name}</span> 
+                        <span class="price">${props.Price}</span> 
                     </div>
-                    <Link to={`/item/${props.id}`}> Detalle </Link>        
+                    <p>{props.Category}</p>
+                    <div class="buttons d-flex justify-content-center"> 
+                        <Link to={`/item/${props.id}`}><button class="btn btn-outline-primary mr-1 itemDetail"> Detalle </button> </Link>    
+                        <button class="btn btn-primary itemAdd" onClick={()=> cartInContext.addItem(props, 1)}>Agregar</button> 
+                    </div>
                 </div>
             </div>
-        </Col>
+        </div>
+        
         
     )
 }

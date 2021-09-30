@@ -10,6 +10,7 @@ export default function Cart(){
     const [total, setTotal] = useState(0);
     const [showUserData, setShowUserData] = useState(false);
     const [checkMails, setCheckMails] = useState(false)
+    const [nroCompra, setNroCompra] = useState();
 
     const getTotal = () =>{
         let i = 0;
@@ -65,6 +66,13 @@ export default function Cart(){
 
         const orderReference = await addDoc(collection(db, "Orders"), order)
         console.log("ID de Compra: ", orderReference.id);
+        setNroCompra(orderReference.id);
+
+        return(
+            <>
+            <h1>Fin de compra</h1>
+            </>
+        )
 
     }
 
@@ -136,6 +144,9 @@ export default function Cart(){
                 </div>
                 <button type="submit" className={`btnSend btn btn-primary ${checkMails ? "" : "disabled" }`}>Enviar</button>
             </form>
+            {nroCompra !== undefined &&
+            <p>Nro de compra: {nroCompra} </p>
+            }
     </div>
     }            
     
