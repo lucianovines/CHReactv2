@@ -12,9 +12,10 @@ export default function ItemDetailContainer(){
     const productsInContext = useContext(productsContext);
 
     const {id} = useParams();
-
+  
 
     useEffect(()=>{
+        
         new Promise((resolve, reject) =>{
             resolve(productsInContext.products.filter((item)=> item.id === id));
             setLoading(true);

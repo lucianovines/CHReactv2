@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {CartProvider} from "./context/cartContext"
 import { ProductsProvider } from './context/productsContext';
 import Cart from './components/cart';
+import { useEffect} from 'react';
 
 
 //pages
@@ -14,14 +15,17 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 
 
 function App() {
+
+  document.title= "Proyecto Coder";
+
   return (
     <CartProvider>
       <ProductsProvider>
-        <BrowserRouter basename={'/CHReactv2'}>
+        <BrowserRouter basename={'/CHReactv2'} >
           <NavBar />
           <Switch>
 
-            <Route exact path="/">
+            <Route exact path="/" title="Index Page">
                 <ItemListContainer/>
             </Route>
 
