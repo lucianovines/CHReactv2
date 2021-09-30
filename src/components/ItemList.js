@@ -8,10 +8,8 @@ export default function ItemList(category){
     const [products, setProducts] = useState([]);
     const productsInContext = useContext(productsContext);
     const productList= productsInContext.products
-   
 
-    console.log("Category props", category);
-    console.log("products List", productList);
+    console.log("Itemes en List", productList)
 
     const getCategory = () => {
         if(category.category === undefined){
@@ -21,17 +19,16 @@ export default function ItemList(category){
             setProducts(productsFiltered)
         }
     }
-
-    
+        
     useEffect(()=>{
        getCategory()
-    },[]);
+    },[category.category, productList]);
 
 
 
     return(
         <>
-       {products.map((product)=>(<Item {...product} />))} 
+       {products.map((product)=>(<Item {...product} key={product.id} />))} 
        </>
         
     )

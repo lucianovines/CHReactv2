@@ -3,12 +3,13 @@ import cartContext from "../context/cartContext";
 import { Link } from "react-router-dom";
 import { FiTrash } from "react-icons/fi";
 import { db } from "../firebase";
-import { collection,doc, setDoc, Timestamp, addDoc } from "firebase/firestore";
+import { collection, Timestamp, addDoc } from "firebase/firestore";
 
 export default function Cart(){
     const cartInContext = useContext(cartContext);
     const [total, setTotal] = useState(0);
     const [showUserData, setShowUserData] = useState(false);
+    const [checkMails, setCheckMails] = useState(false)
 
     const getTotal = () =>{
         let i = 0;
@@ -42,10 +43,19 @@ export default function Cart(){
         console.log("userData", userData);
     }
 
+    const checkComparation = (event) =>{
+        console.log("valor mail", userData.email)
+        if(event.target.value === userData.email){
+            console.log("soy igual", userData.email)
+            setCheckMails(true)
+        }else{
+            setCheckMails(false)
+        }
+    }
+
     const sendData = async (event)=>{
         event.preventDefault();
         console.log("datos enviados" , userData)
-        const orderCollection = collection(db, "Orders");
         const order ={
             buyer: userData,
             items: cartInContext.cart,
@@ -63,53 +73,49 @@ export default function Cart(){
         
 <>
         {cartInContext.cart.length >0 && 
-<div class="container padding-bottom-3x mb-1">
-    <div class="table-responsive shopping-cart">
-        <table class="table">
+<div className="container padding-bottom-3x mb-1">
+    <div className="table-responsive shopping-cart">
+        <table className="table">
             <thead>
                 <tr>
                     <th>Producto</th>
-                    <th class="text-center">Cantidad</th>
-                    <th class="text-center">Subtotal</th>
-                    <th class="text-center">Total</th>
-                    <th class="text-center"><a class="btn btn-sm btn-outline-danger" onClick={()=>cartInContext.clear()}>Vaciar Carrito</a></th>
+                    <th className="text-center">Cantidad</th>
+                    <th className="text-center">Subtotal</th>
+                    <th className="text-center">Total</th>
+                    <th className="text-center"><button className="btn btn-sm btn-outline-danger" onClick={()=>cartInContext.clear()}>Vaciar Carrito</button></th>
                 </tr>
             </thead>
             <tbody>
             {cartInContext.cart.map((product) =>
                 <tr>
                     <td>
-                        <div class="product-item">
-                            <a class="product-thumb" href="#"><img src={product.product.imgUrl} alt="Product"></img></a>
-                            <div class="product-info">
-                                <h4 class="product-title"><a href="#">{product.product.Name}</a></h4><span><em>Categoria:</em> {product.product.Category}</span><span><em>Descripción:</em> {product.product.Description}</span>
+                        <div className="product-item">
+                            <span className="product-thumb" href="#"><img src={product.product.imgUrl} alt="Product"></img></span>
+                            <div className="product-info">
+                                <h4 className="product-title"><span>{product.product.Name}</span></h4><span><em>Categoria:</em> {product.product.Category}</span>
                             </div>
                         </div>
                     </td>
-                    <td class="text-center">
-                        <p class="form-control" >
+                    <td className="text-center text-lg text-medium">
                             {product.quantity}
-                        </p>
                     </td>
-                    <td class="text-center text-lg text-medium">
-                        <button onClick={()=>console.log("sumar") }>+</button>
-                        ${product.product.Price}
-                        <button>-</button>
+                    <td className="text-center text-lg text-medium">
+                        ${product.product.Price} 
                     </td>
-                    <td class="text-center text-lg text-medium">${(product.product.Price * product.quantity)}</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><FiTrash onClick={()=> cartInContext.removeItem(product.product.id)}/></a></td>
+                    <td className="text-center text-lg text-medium">${(product.product.Price * product.quantity)}</td>
+                    <td className="text-center"><button class="remove-from-cart" data-toggle="tooltip" title="" data-original-title="Remove item"><FiTrash onClick={()=> cartInContext.removeItem(product.product.id)}/></button></td>
                 </tr>
             )}
             </tbody>
         </table>
     </div>
-    <div class="shopping-cart-footer">
-        <div class="column text-lg">Total: <span class="text-medium">${total}</span></div>
+    <div className="shopping-cart-footer">
+        <div className="column text-lg">Total: <span class="text-medium">${total}</span></div>
     </div>
-    <div class="shopping-cart-footer">
-        <div class="column"><a class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Seguir Comprando</a></div>
-        <div class="column">
-            <a class="btn btn-success" onClick={()=>userDataIndicator()}>Finalizar Compra</a>
+    <div className="shopping-cart-footer">
+        <div className="column"><button class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Seguir Comprando</button></div>
+        <div className="column">
+            <button class="btn btn-success" onClick={()=>userDataIndicator()}>Finalizar Compra</button>
         </div>
     </div>
     {showUserData===true && 
@@ -120,12 +126,15 @@ export default function Cart(){
                     <input type="text" placeholder="Nombre" className="form-control" onChange={handleInputChange} name="name"></input>
                 </div>
                 <div className="col-md-3">
-                    <input type="text" placeholder="Telefono" className="form-control" onChange={handleInputChange} name="phone"></input>
+                    <input type="number" placeholder="Telefono" className="form-control" onChange={handleInputChange} name="phone"></input>
                 </div>
                 <div className="col-md-3">
-                    <input type="text" placeholder="Email" className="form-control" onChange={handleInputChange} name="email"></input>
+                    <input type="email" placeholder="Email" className="form-control" onChange={handleInputChange} name="email"></input>
                 </div>
-                <button type="submit" className="btn btn-primary">Enviar</button>
+                <div className="col-md-3">
+                    <input type="email" placeholder="Repetir Email" className={`form-control ${checkMails ? "" : "redBorder" }`} onChange={checkComparation} name="repemail"></input>
+                </div>
+                <button type="submit" className={`btnSend btn btn-primary ${checkMails ? "" : "disabled" }`}>Enviar</button>
             </form>
     </div>
     }            

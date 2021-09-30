@@ -9,7 +9,7 @@ export const CartProvider = ({ item = [], children}) =>{
     const cartDraft = cart;
 
     async function addItem(item, quantity){
-        const i = await isInCart(item.id);
+        
         if (isIn===true){
             alert("no se puede agregar")
         }else{

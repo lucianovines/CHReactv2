@@ -2,6 +2,12 @@
     background-color: transparent;
     border: none;
 }
+.redBorder{
+    border: solid 1px red !important;
+}
+.btnSend{
+    margin-top: 12px !important;
+}
 
 .productStock{
     border: 1px solid black;
@@ -36,14 +42,34 @@
     margin: 10px;
 }
 
+.card-text{
+    max-height: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: pre-wrap;;
+}
 
+
+
+
+.buttonDetail{
+    width: 100%;
+}
+
+.buttonAdd{
+    width: 100%;
+}
+
+.itemDetailContainer{
+    margin-top: 25px;
+}
 .contenedor{
     margin: auto !important;
 }
 
 .pPrincipal{
     background-image: url(../img/background.png);
-    height: 70vh;
+    height: 40vh;
     width: 100%;
     color: white; 
     margin-bottom: 30px;
@@ -150,7 +176,9 @@ select.form-control {
     color: #ff5252;
     font-size: 18px;
     line-height: 1;
-    text-decoration: none
+    text-decoration: none;
+    background-color: white !important;
+    border: none;
 }
 
 .shopping-cart .count-input,

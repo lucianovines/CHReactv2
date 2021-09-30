@@ -1,6 +1,6 @@
 import {FiShoppingCart} from 'react-icons/fi';
 
-export default function(){
+export default function CartWidget(){
     return(
         <>
             <button className="cartButton"><FiShoppingCart style={{color:'white'}}/></button>

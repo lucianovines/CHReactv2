@@ -1,8 +1,6 @@
 import { Container, Col, Row } from "react-bootstrap"
-import ItemListContainer from "../components/ItemListContainer"
 
-
-export default function home(){
+export default function Banner(props){
     return(
         <>
         <Container fluid>
@@ -12,7 +10,6 @@ export default function home(){
                 </Col>
             </Row>
         </Container>
-        <ItemListContainer/>
         </>
     )
 }

@@ -6,7 +6,6 @@ import { Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../assets/img/logo.png'
 import CartWidget from './CartWidget'
-import { CategoriesJSON } from '../jsons/CategoriesJson';
 import cartContext from '../context/cartContext';
 import productsContext from '../context/productsContext';
 import { useContext } from 'react';
@@ -37,7 +36,7 @@ export default function NavBar() {
     
       <NavDropdown className="navBarV" title="Categorias" id="navbarScrollingDropdown">
         {productsInContext.categories.map((category)=>(
-            <NavDropdown.Item  > 
+            <NavDropdown.Item key={category.Name} >  
               <Link className="navBarV navBarDropDown" to={`/category/${category.Description}`}>{category.Name} </Link>
             </NavDropdown.Item>
         ))}

@@ -8,7 +8,6 @@ import Cart from './components/cart';
 
 
 //pages
-import ProductsList from './pages/ProductsList';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 
@@ -23,7 +22,7 @@ function App() {
           <Switch>
 
             <Route exact path="/">
-                <ProductsList/>
+                <ItemListContainer/>
             </Route>
 
             <Route exact path="/category/:id">
