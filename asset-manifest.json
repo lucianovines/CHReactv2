@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/lucianovines/CHReactv2/static/css/main.056bd433.chunk.css",
+    "main.js": "/lucianovines/CHReactv2/static/js/main.d57ab83c.chunk.js",
+    "main.js.map": "/lucianovines/CHReactv2/static/js/main.d57ab83c.chunk.js.map",
+    "runtime-main.js": "/lucianovines/CHReactv2/static/js/runtime-main.386fc067.js",
+    "runtime-main.js.map": "/lucianovines/CHReactv2/static/js/runtime-main.386fc067.js.map",
+    "static/css/2.4be38407.chunk.css": "/lucianovines/CHReactv2/static/css/2.4be38407.chunk.css",
+    "static/js/2.43cf8294.chunk.js": "/lucianovines/CHReactv2/static/js/2.43cf8294.chunk.js",
+    "static/js/2.43cf8294.chunk.js.map": "/lucianovines/CHReactv2/static/js/2.43cf8294.chunk.js.map",
+    "static/js/3.f8d37d4f.chunk.js": "/lucianovines/CHReactv2/static/js/3.f8d37d4f.chunk.js",
+    "static/js/3.f8d37d4f.chunk.js.map": "/lucianovines/CHReactv2/static/js/3.f8d37d4f.chunk.js.map",
+    "index.html": "/lucianovines/CHReactv2/index.html",
+    "static/css/2.4be38407.chunk.css.map": "/lucianovines/CHReactv2/static/css/2.4be38407.chunk.css.map",
+    "static/css/main.056bd433.chunk.css.map": "/lucianovines/CHReactv2/static/css/main.056bd433.chunk.css.map",
+    "static/js/2.43cf8294.chunk.js.LICENSE.txt": "/lucianovines/CHReactv2/static/js/2.43cf8294.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/lucianovines/CHReactv2/static/media/background.82ad7033.png",
+    "static/media/logo.c309f388.png": "/lucianovines/CHReactv2/static/media/logo.c309f388.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.386fc067.js",
+    "static/css/2.4be38407.chunk.css",
+    "static/js/2.43cf8294.chunk.js",
+    "static/css/main.056bd433.chunk.css",
+    "static/js/main.d57ab83c.chunk.js"
+  ]
+}
