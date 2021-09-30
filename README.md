@@ -12,11 +12,15 @@ Correr la aplicacion localmente: [localhost:3000](http://localhost:3000/)
 
 ### `npm start`
 
-Para buildear la app en modo de produccion
+Para subir la aplicación al repositorio:
+
+### `Modificar homepage con direccion del repositorio`
 
 ### `npm run build`
+
+### `npm run deploy`
 
 
 ## Navegacion de la app 
 
-![GIF](/git-app.gif "NAVEGACION")
+![GIF](/Animation.gif "NAVEGACION")
