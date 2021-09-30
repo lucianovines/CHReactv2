@@ -121,7 +121,9 @@ export default function Cart(){
         <div className="column text-lg">Total: <span class="text-medium">${total}</span></div>
     </div>
     <div className="shopping-cart-footer">
-        <div className="column"><button class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Seguir Comprando</button></div>
+        <div className="column">
+            <Link to={`/`}><button class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Seguir Comprando</button></Link>
+        </div>
         <div className="column">
             <button class="btn btn-success" onClick={()=>userDataIndicator()}>Finalizar Compra</button>
         </div>

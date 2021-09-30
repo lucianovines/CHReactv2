@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import cartContext from "../context/cartContext"
 import { useContext } from "react"
+import { AiFillPlusCircle } from "react-icons/ai";
+import {FaSearchPlus} from "react-icons/fa"
 
 export default function Item(props){
 
@@ -22,8 +24,8 @@ export default function Item(props){
                     </div>
                     <p>{props.Category}</p>
                     <div class="buttons d-flex justify-content-center"> 
-                        <Link to={`/item/${props.id}`}><button class="btn btn-outline-primary mr-1 itemDetail"> Detalle </button> </Link>    
-                        <button class="btn btn-primary itemAdd" onClick={()=> cartInContext.addItem(props, 1)}>Agregar</button> 
+                        <Link to={`/item/${props.id}`}><button class="btn btn-outline-primary mr-1 itemDetail"> Detalle <FaSearchPlus/></button> </Link>    
+                        <button class="btn btn-primary itemAdd" onClick={()=> cartInContext.addItem(props, 1)}>Agregar <AiFillPlusCircle /></button> 
                     </div>
                 </div>
             </div>

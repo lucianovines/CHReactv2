@@ -17,7 +17,7 @@ function App() {
   return (
     <CartProvider>
       <ProductsProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={'/CHReactv2'}>
           <NavBar />
           <Switch>
 
